@@ -30,6 +30,9 @@ class MyHomePage extends StatelessWidget {
     ),
   ];
 
+  final inputTitleController = TextEditingController();
+  final inputPriceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +40,7 @@ class MyHomePage extends StatelessWidget {
         title: Text('Flutter App'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
@@ -46,6 +49,43 @@ class MyHomePage extends StatelessWidget {
               color: Colors.blue,
               child: Text('CHART!'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    controller: inputTitleController,
+                    decoration: InputDecoration(
+                      labelText: 'Title',
+                    ),
+                  ),
+                  TextField(
+                    controller: inputPriceController,
+                    decoration: InputDecoration(
+                      labelText: 'Amount',
+                    ),
+                  ),
+                  TextButton(
+                    style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all(
+                        Colors.purple,
+                      ),
+                    ),
+                    onPressed: () {
+                      print(inputTitleController.text);
+                      print(inputPriceController.text);
+                    },
+                    child: Text(
+                      'Add Transaction',
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
           Column(
