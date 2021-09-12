@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
         ),
+        errorColor: Colors.red,
       ),
       home: MyHomePage(),
     );
@@ -68,12 +69,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String title, double price) {
+  void _addNewTransaction(String title, double price, DateTime chosenDate) {
     final newTx = Transaction(
       id: DateTime.now().toString(),
       title: title,
       price: price,
-      date: DateTime.now(),
+      date: chosenDate,
     );
 
     setState(() {
@@ -92,6 +93,12 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       },
     );
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _userTransactions.removeWhere((element) => element.id == id);
+    });
   }
 
   @override
@@ -116,7 +123,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Chart(_recentTransactions),
-            TransactionList(_userTransactions),
+            TransactionList(_userTransactions, _deleteTransaction),
           ],
         ),
       ),
