@@ -12,7 +12,6 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
-      height: 400,
       child: _transactions.isEmpty
           ? Column(
               // crossAxisAlignment: CrossAxisAlignment.center,
